@@ -32,7 +32,7 @@ function Header() {
             {showMenu ? <X size={45} color='black' /> : <Menu size={45} color='black' />}
           </button>
           {showMenu && (
-            <div className="flex flex-col p-4 absolute z-10 top-[11vh] right-0 left-0 gap-[1rem] bg-gray-100 items-center">
+            <div className="flex flex-col p-4 absolute z-10 top-[10.6] right-0 left-0 gap-[1rem] bg-gray-100 items-center">
               {navItems.map((item,idx)=><Link className=' text-black' key={idx} href={item.link} >{item.name}</Link>)}
               <nav className="flex flex-col gap-[1rem]">
                 <button className="bg-blue-600 p-[.5rem] rounded-md">Login</button>
