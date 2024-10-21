@@ -5,7 +5,7 @@ import Image from 'next/image';
 // import Logo from '@/app/assets/images/fox.png';
 import Logo from '../assets/images/fox.png';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Origami } from 'lucide-react';
 
  const navItems = [{name:"Home",link:"/"},{name:"To do",link:"/todo"}, {name:"About Us",link:"aboutUs"}, {name:"Contact",link:"contactUs"}];
 
@@ -14,11 +14,12 @@ function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
   return (
-    <header className="flex relative flex-row items-center justify-between space-between px-[2rem] py-[1.2rem] border-b-2 bg-gray-100">
-        <Image src={Logo} width={50} height={50} alt='anything' />
+    <header className="flex flex-row items-center justify-between space-between px-[2rem] py-[1.2rem] border-b-2 bg-background sticky top-0 z-10">
+        {/* <Image src={Logo} width={50} height={50} alt='anything' /> */}
+        <Origami className='text-orange w-[50px] h-[50px]'/>
         <div className="flex justify-between items-center w-[60%] hidden md:flex">
-          <nav className="flex justify-center gap-5 " >
-          {navItems.map((item,idx)=><Link className=' text-black' key={idx} href={item.link} >{item.name}</Link>)}
+          <nav className="flex justify-center gap-[3rem]" >
+          {navItems.map((item,idx)=><Link className=' text-bone text-[1.5em] bold hover:text-orange' key={idx} href={item.link} >{item.name}</Link>)}
           </nav>
           <nav className="flex flex-row gap-4">
             <button className=' bg-blue-600 p-[1rem] rounded-md'>Login</button>

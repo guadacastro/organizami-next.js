@@ -1,8 +1,17 @@
 import React from 'react';
-
+import ToDoList from '../components/ToDoList';
 const page = () => {
   return (
-    <div>To do list page</div>
+    <main className='flex flex-row justify-center h-screen flex-wrap gap-[2rem] items-baseline py-[20vh] px-[2vw] w-auto'>
+      <ToDoList />
+      <ToDoList />
+      <ToDoList />
+      <ToDoList />
+      <ToDoList />
+      <ToDoList />
+      <ToDoList />
+    </main>
+    
   )
 }
 

@@ -5,6 +5,15 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --orange: #FD6700;
+  --bone: #F5F5F5;
+  --pink: #D85898;
+  --blue: #1264C2;
+  --violet: #8703FA;
+
+  --shadow-1: box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+
 }
 
 @media (prefers-color-scheme: dark) {
