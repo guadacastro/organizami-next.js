@@ -12,6 +12,8 @@
   --violet: #8703FA;
 
   --shadow-1: box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --gradient-1: background: rgb(253,103,0);
+  --gradient-2: background: radial-gradient(circle, rgba(253,103,0,1) 3%, rgba(216,88,152,1) 73%, rgba(135,3,250,1) 100%);
 
 
 }

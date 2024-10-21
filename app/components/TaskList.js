@@ -54,7 +54,7 @@ const Task = ({ task, onTaskUpdate, onTaskDelete }) => {
           type="checkbox"
           checked={isCompleted}
           onChange={handleCompletedChange}
-          className="ml-2 rounded-full h-5 w-5 text-orange-900"
+          className="ml-2 rounded-full h-5 w-5 text-orange-900 accent-violet"
         />
       </div>
 

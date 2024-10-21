@@ -2,8 +2,13 @@
 'use client'
 import { useState } from 'react';
 import TaskList from './TaskList';
+import { Inter } from 'next/font/google'
+import React from 'react'
+import { X } from 'lucide-react'
 
-function ToDoList() {
+const inter = Inter({ subsets: ['latin'] })
+
+function ToDoList({ id, onDelete }) {
   const [title, setTitle] = useState(''); // To store the final title
   const [isEditing, setIsEditing] = useState(false); // To track if the title is being edited
   const [newTitle, setNewTitle] = useState(''); // To track the title input value while editing
@@ -21,7 +26,7 @@ function ToDoList() {
               setTitle(newTitle); // Set the new title
             }
           }}
-          className="text-[2rem] font-bold text-black bg-transparent border-b border-black focus:outline-none text-center"
+          className="text-xl sm:text-2xl md:text-3xl font-bold text-black bg-transparent border-b border-black focus:outline-none text-left w-full"
           autoFocus
         />
       );
@@ -29,26 +34,34 @@ function ToDoList() {
   }
 
   return (
-    <div className='flex flex-col w-[50vw] rounded-lg justify-between items-center shadow-1 bg-white p-[1rem]'>
-        <div >
+    <div className="w-full bg-gray-100 p-4">
+      <div className={`w-full rounded-lg shadow-lg bg-white p-4 ${inter.className}`}>
+        <div className="w-full mb-4 sm:mb-6 flex justify-between">
           {isEditing ? (
             changeTitle() // Show the input if in editing mode
           ) : (
             <h1
-              className="text-[2rem] font-bold text-black cursor-pointer text-center"
+              className="text-xl sm:text-2xl md:text-3xl font-bold text-black cursor-pointer text-center break-words "
               onClick={() => setIsEditing(true)} // Enter edit mode
             >
               {title || 'Click to edit title'}
             </h1>
           )}
+            <button
+              onClick={() => onDelete(id)}
+              className='top-2 right-2 text-red-800 font-bold w-6 h-6 rounded-full flex items-center justify-center text-sm'
+            >
+            <X size={20} />
+          </button>
+        </div>
+        <TaskList 
+          initialTasks={[]} 
+          onUpdateTasks={(updatedTasks) => {
+            // Handle the updated tasks, e.g., save to state or send to a server
+            console.log(updatedTasks);
+          }} 
+        />
       </div>
-      <TaskList 
-        initialTasks={[]} 
-        onUpdateTasks={(updatedTasks) => {
-          // Handle the updated tasks, e.g., save to state or send to a server
-          console.log(updatedTasks);
-        }} 
-      />
     </div>
   );
 }

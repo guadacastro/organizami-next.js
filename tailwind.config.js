@@ -16,6 +16,8 @@ module.exports = {
         violet: "var(--violet)",
         orange: "var(--orange)",
         shadow1: "var(--shadow-1)",
+        gradient1: "var(--gradient-1)",
+        gradient2: "var(--gradient-2)",
       },
     },
   },
