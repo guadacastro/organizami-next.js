@@ -10,6 +10,7 @@ function ToDoList({ id, onDelete }) {
   const [title, setTitle] = useState(''); // To store the final title
   const [isEditing, setIsEditing] = useState(false); // To track if the title is being edited
   const [newTitle, setNewTitle] = useState(''); // To track the title input value while editing
+  const [backgroundColor, setBackgroundColor] = useState('bg-white');
 
   function changeTitle() {
     if (isEditing) {
@@ -31,10 +32,14 @@ function ToDoList({ id, onDelete }) {
     }
   }
 
+  const handleColorChange = (colorClass) => {
+    setBackgroundColor(colorClass);
+  }
+
   return (
     <div className="w-full bg-gray-100">
-      <div className={`w-full rounded-lg shadow-lg bg-white p-10`}>
-        <Colors />
+      <div className={`w-full rounded-lg shadow-lg p-10 ${backgroundColor}`}>
+        <Colors onColorChange={handleColorChange} />
         <div className="w-full mb-4 sm:mb-6 flex justify-between">
           {isEditing ? (
             changeTitle() // Show the input if in editing mode
@@ -46,10 +51,10 @@ function ToDoList({ id, onDelete }) {
               {title || 'Click to edit title'}
             </h1>
           )}
-            <button
-              onClick={() => onDelete(id)}
-              className='top-2 right-2 text-red-800 font-bold w-6 h-6 rounded-full flex items-center justify-center text-sm'
-            >
+          <button
+            onClick={() => onDelete(id)}
+            className='top-2 right-2 text-red-800 font-bold w-6 h-6 rounded-full flex items-center justify-center text-sm'
+          >
             <X size={20} />
           </button>
         </div>
