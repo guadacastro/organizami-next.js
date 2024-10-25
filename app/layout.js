@@ -1,11 +1,10 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/Header";
-import pacifico from "next/font/google";
+import { Pacifico } from "next/font/google";
 
-const pacifico = pacifico({
+const pacifico = Pacifico({
   subsets: ['latin'],
-  weight: ['400'],
   variable: '--font-pacifico',
 });
 
