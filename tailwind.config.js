@@ -18,7 +18,6 @@ module.exports = {
         shadow1: "var(--shadow-1)",
         gradient1: "var(--gradient-1)",
         gradient2: "var(--gradient-2)",
-        pacifico: "var(--pacifico)",
       },
     },
   },

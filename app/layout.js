@@ -1,11 +1,19 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/Header";
-import { Pacifico } from "next/font/google";
+import { Pacifico, Borel } from "next/font/google";
+
+const borel = Borel({
+  subsets: ['latin'],
+  variable: '--font-borel',
+  weight: '400',
+  display: 'swap',
+});
 
 const pacifico = Pacifico({
   subsets: ['latin'],
   variable: '--font-pacifico',
+  weight: '400',
 });
 
 const geistSans = localFont({
@@ -26,9 +34,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" >
+    <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased bg-gray-100`}
+        className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} ${borel.variable} antialiased bg-gray-100`}
       >
         <Header/>
         {children}
@@ -36,3 +44,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+

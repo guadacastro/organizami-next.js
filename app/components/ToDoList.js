@@ -2,11 +2,9 @@
 'use client'
 import { useState } from 'react';
 import TaskList from './TaskList';
-import { Inter } from 'next/font/google'
 import React from 'react'
 import { X } from 'lucide-react'
-
-const inter = Inter({ subsets: ['latin'] })
+import Colors from './Colors';
 
 function ToDoList({ id, onDelete }) {
   const [title, setTitle] = useState(''); // To store the final title
@@ -35,7 +33,8 @@ function ToDoList({ id, onDelete }) {
 
   return (
     <div className="w-full bg-gray-100">
-      <div className={`w-full rounded-lg shadow-lg bg-white p-10 ${inter.className}`}>
+      <div className={`w-full rounded-lg shadow-lg bg-white p-10`}>
+        <Colors />
         <div className="w-full mb-4 sm:mb-6 flex justify-between">
           {isEditing ? (
             changeTitle() // Show the input if in editing mode

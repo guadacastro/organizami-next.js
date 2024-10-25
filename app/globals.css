@@ -15,7 +15,6 @@
   --gradient-1: background: rgb(253,103,0);
   --gradient-2: background: radial-gradient(circle, rgba(253,103,0,1) 3%, rgba(216,88,152,1) 73%, rgba(135,3,250,1) 100%);
 
-
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,4 +34,13 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.pacifico-text {
+  font-family: var(--font-pacifico);
+}
+
+.borel-text {
+  font-family: var(--font-borel);
+  font-size: 5rem;
 }
