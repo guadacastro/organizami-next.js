@@ -34,8 +34,8 @@ function ToDoList({ id, onDelete }) {
   }
 
   return (
-    <div className="w-full bg-gray-100 p-4">
-      <div className={`w-full rounded-lg shadow-lg bg-white p-4 ${inter.className}`}>
+    <div className="w-full bg-gray-100">
+      <div className={`w-full rounded-lg shadow-lg bg-white p-10 ${inter.className}`}>
         <div className="w-full mb-4 sm:mb-6 flex justify-between">
           {isEditing ? (
             changeTitle() // Show the input if in editing mode

@@ -1,6 +1,13 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/Header";
+import pacifico from "next/font/google";
+
+const pacifico = pacifico({
+  subsets: ['latin'],
+  weight: ['400'],
+  variable: '--font-pacifico',
+});
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,9 +27,9 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" >
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-100`}
+        className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} antialiased bg-gray-100`}
       >
         <Header/>
         {children}
