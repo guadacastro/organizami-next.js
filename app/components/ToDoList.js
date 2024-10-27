@@ -11,7 +11,7 @@ function ToDoList({ id, onDelete }) {
   const [isEditing, setIsEditing] = useState(false); // To track if the title is being edited
   const [newTitle, setNewTitle] = useState(''); // To track the title input value while editing
   const [backgroundColor, setBackgroundColor] = useState('bg-white');
-
+  const [textColor, setTextColor] = useState('text-black');
   function changeTitle() {
     if (isEditing) {
       return (
@@ -33,7 +33,12 @@ function ToDoList({ id, onDelete }) {
   }
 
   const handleColorChange = (colorClass) => {
-    setBackgroundColor(colorClass);
+    setBackgroundColor(`${colorClass} bg-opacity-50`);
+    if (colorClass === 'bg-black' || colorClass === 'bg-violet' || colorClass === 'bg-blue' || colorClass === 'bg-orange' || colorClass === 'bg-pink') {
+      setTextColor('text-white');
+    } else {
+      setTextColor('text-black');
+    }
   }
 
   return (
@@ -53,7 +58,7 @@ function ToDoList({ id, onDelete }) {
           )}
           <button
             onClick={() => onDelete(id)}
-            className='top-2 right-2 text-red-800 font-bold w-6 h-6 rounded-full flex items-center justify-center text-sm'
+            className='top-2 right-2 text-black font-bold w-6 h-6 rounded-full flex items-center justify-center text-sm'
           >
             <X size={20} />
           </button>
