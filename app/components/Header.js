@@ -43,8 +43,8 @@ function Header() {
       
       {/* Login and Sign Up buttons - visible on all screen sizes */}
       <nav className="flex flex-row gap-4">
-        <button className='font-poppins font-medium p-[0.5rem] lg:p-[1rem] rounded-md text-white xl:text-[1.2em] text-[1em] lg:text-base transition-colors duration-300 bg-gradient-to-r from-orange to-pink hover:from-pink hover:to-violet'>Login</button>
-        <button className='font-poppins font-medium p-[0.5rem] lg:p-[1rem] rounded-md text-white xl:text-[1.2em] text-[1em] lg:text-base transition-colors duration-300 bg-gradient-to-r from-pink to-violet via-blue hover:from-violet hover:to-blue'>Sign Up</button>
+        <button className='font-poppins font-medium py-[1vh] px-[2vw] xl:py-[1vh] lg:px-[1vw] rounded-md text-white xl:text-[1.2em] text-[1em] lg:text-base transition-colors duration-300 bg-gradient-to-r from-orange to-pink hover:from-pink hover:to-violet'>Login</button>
+        <button className='font-poppins font-medium py-[1vh] px-[2vw] xl:py-[1vh] lg:px-[1vw] rounded-md text-white xl:text-[1.2em] text-[1em] lg:text-base transition-colors duration-300 bg-gradient-to-r from-pink to-violet via-blue hover:from-violet hover:to-blue'>Sign Up</button>
       </nav>
       
       {/* Mobile Navigation */}
