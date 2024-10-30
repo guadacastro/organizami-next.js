@@ -12,7 +12,9 @@ function Header() {
 
   return (
     <header className="flex flex-row items-center justify-between px-[2rem] py-[1.2rem] border-b-2 bg-gray-100 sticky top-0 z-10">
-      <Origami className='w-[50px] h-[50px] bg-gradient-to-r from-orange to-violet via-pink rounded-full p-[.5rem]'/>
+      <Link href="/">
+        <Origami className='w-[50px] h-[50px] bg-gradient-to-r from-orange to-violet via-pink rounded-full p-[.5rem]'/>
+      </Link>
       
       {/* Desktop Navigation */}
       <div className="hidden lg:flex flex-grow justify-center items-center text-orange">

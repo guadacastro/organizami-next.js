@@ -83,3 +83,15 @@ body {
   -webkit-background-clip: text;
   color: transparent;
 }
+
+.title-text {
+  font-size: 3.5rem;
+  line-height: 1.5;
+  font-weight: 900;
+}
+
+@media (min-width: 768px) {
+  .title-text {
+    font-size: 5rem;
+  }
+}
