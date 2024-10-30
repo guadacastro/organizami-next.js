@@ -11,9 +11,9 @@
   --blue: #1264C2;
   --violet: #8703FA;
 
-  --shadow-1: box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  --gradient-1: background: rgb(253,103,0);
-  --gradient-2: background: radial-gradient(circle, rgba(253,103,0,1) 3%, rgba(216,88,152,1) 73%, rgba(135,3,250,1) 100%);
+  --shadow-1: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  --gradient-1: rgb(253,103,0);
+  --gradient-2: radial-gradient(circle, rgba(253,103,0,1) 3%, rgba(216,88,152,1) 73%, rgba(135,3,250,1) 100%);
 
 }
 
@@ -43,4 +43,43 @@ body {
 .borel-text {
   font-family: var(--font-borel);
   font-size: 5rem;
+}
+
+.animate-gradient {
+  background: linear-gradient(
+    45deg,
+    var(--orange) 0%,
+    var(--orange) 15%,
+    var(--pink) 35%,
+    var(--violet) 55%,
+    var(--orange) 85%
+  );
+  background-size: 400% 400%;
+  -webkit-animation: animatedgradient 15s ease infinite;
+  -moz-animation: animatedgradient 15s ease infinite;
+  animation: animatedgradient 15s ease infinite;
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(
+    45deg,
+    var(--orange) 0%,
+    var(--pink) 50%,
+    var(--violet) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
 }
