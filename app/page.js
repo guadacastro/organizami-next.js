@@ -6,7 +6,7 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center min-h-screen">
         
         <section className="flex flex-col items-center justify-evenly h-full w-full gap-10">
-          <h1 className=" sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold borel-text px-[5vw] sm:px-[10vw] py-[5vh] sm:py-[10vh] gradient-text animate-gradient text-center leading-normal sm:leading-normal overflow-x-hidden break-words">
+          <h1 className=" sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold borel-text px-[5vw] sm:px-[10vw] xl:py-[5vh] sm:py-[10vh] gradient-text animate-gradient text-center leading-normal sm:leading-normal overflow-x-hidden">
             Welcome to Organizami
           </h1>
           <h2 className="text-black text-lg sm:text-xl p-3 text-center">

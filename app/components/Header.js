@@ -21,7 +21,7 @@ function Header() {
             <Link 
               className={`
                 font-poppins tracking-wide
-                text-[1.5em] relative
+                text-[1.3em] relative
                 bg-gradient-to-r from-orange to-pink bg-clip-text text-transparent 
                 hover:bg-gradient-to-r hover:from-pink hover:to-violet
                 transition-all duration-300
