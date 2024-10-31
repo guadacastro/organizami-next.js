@@ -91,13 +91,16 @@ body {
 }
 
 .title-text {
-  font-size: 3.5rem;
-  line-height: 1.5;
+  font-size: 2rem;
+  line-height: 1.2;
   font-weight: 900;
+  width: 100%;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
   .title-text {
     font-size: 5rem;
+    line-height: 1.5;
   }
 }
