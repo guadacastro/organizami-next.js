@@ -33,7 +33,7 @@ function ToDoList({ id, onDelete }) {
   }
 
   const handleColorChange = (colorClass) => {
-    setBackgroundColor(`${colorClass} bg-opacity-50`);
+    setBackgroundColor(`${colorClass}`);
     if (colorClass === 'bg-black' || colorClass === 'bg-violet' || colorClass === 'bg-blue' || colorClass === 'bg-orange' || colorClass === 'bg-pink') {
       setTextColor('text-white');
     } else {
