@@ -16,13 +16,13 @@ const page = () => {
             <h2 className="text-2xl sm:text-3xl font-borel text-center mb-8 bg-gradient-to-r from-orange to-pink bg-clip-text text-transparent">
               Our Mission
             </h2>
-            <p className="text-base sm:text-lg text-gray-600 mb-12 font-poppins leading-relaxed text-center">
+            <p className="text-base sm:text-lg text-gray-600 mb-12 font-poppins leading-relaxed text-left">
               Organizami is designed to help you streamline your daily tasks and boost your productivity. 
               We believe in making task management simple, intuitive, and even enjoyable.
             </p>
 
             <div className="space-y-6">
-              <h3 className="text-xl sm:text-2xl font-borel text-center mb-8 bg-gradient-to-r from-orange to-pink bg-clip-text text-transparent">
+              <h3 className="text-xl sm:text-2xl font-borel text-left mb-8 bg-gradient-to-r from-orange to-pink bg-clip-text text-transparent">
                 Key Features
               </h3>
               <ul className="space-y-4 text-gray-600 font-poppins">
