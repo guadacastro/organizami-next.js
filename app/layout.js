@@ -1,8 +1,14 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import Header from "./components/Header";
-import { Pacifico, Borel, Poppins, Montserrat } from "next/font/google";
+import { Pacifico, Borel, Poppins, Montserrat, Delius } from "next/font/google";
 
+ const delius = Delius({
+  subsets: ['latin'],
+  variable: '--font-delius',
+  weight: '400',
+ });
+ 
 const borel = Borel({
   subsets: ['latin'],
   variable: '--font-borel',
@@ -48,7 +54,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} ${borel.variable} ${poppins.variable} ${montserrat.variable} antialiased bg-gray-100`}
+        className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} ${borel.variable} ${poppins.variable} ${montserrat.variable} ${delius.variable} antialiased bg-gray-100`}
       >
         <Header/>
         {children}

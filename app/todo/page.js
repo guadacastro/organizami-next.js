@@ -1,17 +1,32 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ToDoList from '../components/ToDoList';
 
 const Page = () => {
-  const [todoLists, setTodoLists] = useState([{ id: 0 }]);
+  const [todoLists, setTodoLists] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const savedLists = localStorage.getItem('todoListIds');
+    setTodoLists(savedLists ? JSON.parse(savedLists) : [{ id: 0 }]);
+    setIsLoaded(true);
+  }, []);
 
   const addTodoList = () => {
-    setTodoLists([...todoLists, { id: Date.now() }]);
+    const newLists = [...todoLists, { id: Date.now() }];
+    setTodoLists(newLists);
+    localStorage.setItem('todoListIds', JSON.stringify(newLists));
   };
 
   const deleteTodoList = (id) => {
-    setTodoLists(todoLists.filter(list => list.id !== id));
+    const newLists = todoLists.filter(list => list.id !== id);
+    setTodoLists(newLists);
+    localStorage.setItem('todoListIds', JSON.stringify(newLists));
   };
+
+  if (!isLoaded) {
+    return null; // or a loading spinner
+  }
 
   return (
     <main className='flex flex-col items-center min-h-screen bg-gray-100 p-2'>
@@ -30,7 +45,8 @@ const Page = () => {
         ))}
       </section>
     </main>
-  )
-}
+  );
+};
 
-export default Page
+export default Page;
+

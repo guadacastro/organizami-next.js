@@ -6,14 +6,20 @@
   --background: #ffffff;
   --foreground: #171717;
   --orange: #FD6700;
+  --light-orange: #FFA500;
   --bone: #F5F5F5;
   --pink: #D85898;
+  --light-pink: #FFC0CB;
   --blue: #1264C2;
+  --light-blue: #008080;
   --violet: #8703FA;
+  --dark-violet: #4B0082;
+  --green: #008000;
 
   --shadow-1: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   --gradient-1: rgb(253,103,0);
   --gradient-2: radial-gradient(circle, rgba(253,103,0,1) 3%, rgba(216,88,152,1) 73%, rgba(135,3,250,1) 100%);
+  
 
 }
 

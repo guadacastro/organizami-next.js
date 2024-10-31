@@ -1,17 +1,50 @@
 // components/ToDoList.js
 'use client'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TaskList from './TaskList';
 import React from 'react'
 import { X } from 'lucide-react'
 import Colors from './Colors';
 
 function ToDoList({ id, onDelete }) {
-  const [title, setTitle] = useState(''); // To store the final title
-  const [isEditing, setIsEditing] = useState(false); // To track if the title is being edited
-  const [newTitle, setNewTitle] = useState(''); // To track the title input value while editing
-  const [backgroundColor, setBackgroundColor] = useState('bg-white');
-  const [textColor, setTextColor] = useState('text-black');
+  // Load initial states from localStorage or use defaults
+  const [title, setTitle] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem(`todolist-${id}-title`) || '';
+    }
+    return '';
+  });
+  
+  const [isEditing, setIsEditing] = useState(false);
+  const [newTitle, setNewTitle] = useState('');
+  
+  const [styles, setStyles] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedStyles = localStorage.getItem(`todolist-${id}-styles`);
+      return savedStyles ? JSON.parse(savedStyles) : {
+        background: 'bg-gradient-to-r from-gray-50 to-gray-100',
+        text: 'text-black',
+        checkbox: 'accent-gray-400',
+        inputBg: 'bg-gray-100'
+      };
+    }
+    return {
+      background: 'bg-gradient-to-r from-gray-50 to-gray-100',
+      text: 'text-black',
+      checkbox: 'accent-gray-400',
+      inputBg: 'bg-gray-100'
+    };
+  });
+
+  // Save title and styles when they change
+  useEffect(() => {
+    localStorage.setItem(`todolist-${id}-title`, title);
+  }, [title, id]);
+
+  useEffect(() => {
+    localStorage.setItem(`todolist-${id}-styles`, JSON.stringify(styles));
+  }, [styles, id]);
+
   function changeTitle() {
     if (isEditing) {
       return (
@@ -21,44 +54,83 @@ function ToDoList({ id, onDelete }) {
           onChange={(e) => setNewTitle(e.target.value)}
           onKeyPress={(e) => {
             if (e.key === 'Enter') {
-              setIsEditing(false); // Exit edit mode
-              setTitle(newTitle); // Set the new title
+              setIsEditing(false);
+              setTitle(newTitle);
             }
           }}
-          className="text-xl sm:text-2xl md:text-3xl font-bold text-black bg-transparent border-b border-black focus:outline-none text-left w-full"
+          className={`text-xl sm:text-2xl md:text-3xl font-poppins ${styles.text} ${styles.inputBg} border-b border-current focus:outline-none text-left w-full`}
           autoFocus
         />
       );
     }
   }
 
-  const handleColorChange = (colorClass) => {
-    setBackgroundColor(`${colorClass}`);
-    if (colorClass === 'bg-black' || colorClass === 'bg-violet' || colorClass === 'bg-blue' || colorClass === 'bg-orange' || colorClass === 'bg-pink') {
-      setTextColor('text-white');
-    } else {
-      setTextColor('text-black');
-    }
-  }
+  const handleColorChange = (colorId) => {
+    const colorMap = {
+      'violet': {
+        background: 'bg-gradient-to-br from-violet to-blue opacity-90',
+        text: 'text-white',
+        checkbox: 'accent-violet text-white checked:bg-white',
+        inputBg: 'bg-white/5'
+      },
+      'blue': {
+        background: 'bg-gradient-to-br from-blue to-lightBlue opacity-90',
+        text: 'text-white',
+        checkbox: 'accent-blue text-white checked:bg-white',
+        inputBg: 'bg-white/5'
+      },
+      'orange': {
+        background: 'bg-gradient-to-br from-orange to-lightOrange opacity-80',
+        text: 'text-white',
+        checkbox: 'accent-orange text-white checked:bg-white',
+        inputBg: 'bg-white/5'
+      },
+      'pink': {
+        background: 'bg-gradient-to-br from-pink to-violet opacity-80',
+        text: 'text-white',
+        checkbox: 'accent-pink text-white checked:bg-white',
+        inputBg: 'bg-white/5'
+      },
+      'bone': {
+        background: 'bg-gradient-to-br from-gray-50 to-gray-200 opacity-90',
+        text: 'text-black',
+        checkbox: 'accent-gray text-white checked:bg-white',
+        inputBg: 'bg-white/5'
+      },
+      'black': {
+        background: 'bg-gradient-to-br from-gray-800 to-black opacity-90',
+        text: 'text-white',
+        checkbox: 'accent-gray text-white checked:bg-white',
+        inputBg: 'bg-white/5'
+      }
+    };
+
+    setStyles(colorMap[colorId]);
+  };
 
   return (
     <div className="w-full bg-gray-100">
-      <div className={`w-full rounded-lg shadow-lg p-10 ${backgroundColor}`}>
+      <div className={`w-full rounded-lg shadow-lg p-10 ${styles.background}`}>
         <Colors onColorChange={handleColorChange} />
         <div className="w-full mb-4 sm:mb-6 flex justify-between">
           {isEditing ? (
-            changeTitle() // Show the input if in editing mode
+            changeTitle()
           ) : (
             <h1
-              className="text-xl sm:text-2xl md:text-3xl font-bold text-black cursor-pointer text-center break-words "
-              onClick={() => setIsEditing(true)} // Enter edit mode
+              className={`text-xl sm:text-2xl md:text-3xl font-poppins ${styles.text} cursor-pointer text-center break-words`}
+              onClick={() => setIsEditing(true)}
             >
               {title || 'Click to edit title'}
             </h1>
           )}
           <button
-            onClick={() => onDelete(id)}
-            className='top-2 right-2 text-black font-bold w-6 h-6 rounded-full flex items-center justify-center text-sm'
+            onClick={() => {
+              localStorage.removeItem(`todolist-${id}-title`);
+              localStorage.removeItem(`todolist-${id}-styles`);
+              localStorage.removeItem(`todolist-${id}-tasks`);
+              onDelete(id);
+            }}
+            className={`top-2 right-2 ${styles.text} font-bold w-6 h-6 rounded-full flex items-center justify-center text-sm`}
           >
             <X size={20} />
           </button>
@@ -66,9 +138,10 @@ function ToDoList({ id, onDelete }) {
         <TaskList 
           initialTasks={[]} 
           onUpdateTasks={(updatedTasks) => {
-            // Handle the updated tasks, e.g., save to state or send to a server
-            console.log(updatedTasks);
-          }} 
+            localStorage.setItem(`todolist-${id}-tasks`, JSON.stringify(updatedTasks));
+          }}
+          styles={styles}
+          todoListId={id}
         />
       </div>
     </div>

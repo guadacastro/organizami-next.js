@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { DndContext, closestCenter } from '@dnd-kit/core';
 import { arrayMove, SortableContext, useSortable, verticalListSortingStrategy } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
@@ -9,7 +9,7 @@ import { Inter } from 'next/font/google'
 const inter = Inter({ subsets: ['latin'] })
 
 // Task Component with Draggable functionality
-const Task = ({ task, onTaskUpdate, onTaskDelete }) => {
+const Task = ({ task, onTaskUpdate, onTaskDelete, styles }) => {
   const [isEditingTask, setIsEditingTask] = useState(false);
   const [taskText, setTaskText] = useState(task.text);
   const [isCompleted, setIsCompleted] = useState(task.completed);
@@ -54,9 +54,14 @@ const Task = ({ task, onTaskUpdate, onTaskDelete }) => {
           type="checkbox"
           checked={isCompleted}
           onChange={handleCompletedChange}
-          className="ml-2 rounded-full h-5 w-5 text-orange-900 accent-violet"
+          className={`ml-2 h-7 w-7 ${styles.checkbox} appearance-none checked:bg-current border-2 border-current rounded-full 
+          transition-colors duration-200 cursor-pointer
+          checked:border-0 relative
+          after:content-['✓'] after:absolute after:text-black after:opacity-0 checked:after:opacity-100
+          after:top-[50%] after:left-[50%] after:transform after:-translate-x-[50%] after:-translate-y-[50%] after:text-xl`}
         />
       </div>
+      
 
       <div className="flex-grow min-w-0">
         {isEditingTask ? (
@@ -65,12 +70,12 @@ const Task = ({ task, onTaskUpdate, onTaskDelete }) => {
             value={taskText}
             onChange={(e) => setTaskText(e.target.value)}
             onKeyPress={handleTaskKeyPress}
-            className="border-b focus:outline-none w-full text-black pl-[1vw] text-xl"
+            className={`border-b border-current/20 focus:outline-none w-full pl-[1vw] text-xl ${styles.text} ${styles.inputBg} font-poppins`}
             autoFocus
           />
         ) : (
           <p
-            className={`cursor-pointer text-xl text-black ${inter.className} ${isCompleted ? 'line-through text-orange' : ''} break-words`}
+            className={`cursor-pointer text-xl ${styles.text} font-poppins ${isCompleted ? 'line-through' : ''} break-words`}
             onClick={() => setIsEditingTask(true)}
           >
             {taskText}
@@ -89,8 +94,18 @@ const Task = ({ task, onTaskUpdate, onTaskDelete }) => {
 };
 
 // TaskList Component
-const TaskList = ({ initialTasks = [], onUpdateTasks }) => {
-  const [tasks, setTasks] = useState(initialTasks.map((task, index) => ({ ...task, id: String(index) })));  // Ensure IDs are strings
+const TaskList = ({ initialTasks = [], onUpdateTasks, styles, todoListId }) => {
+  const [tasks, setTasks] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedTasks = localStorage.getItem(`todolist-${todoListId}-tasks`);
+      return savedTasks ? JSON.parse(savedTasks) : initialTasks.map((task, index) => ({ 
+        ...task, 
+        id: String(index) 
+      }));
+    }
+    return initialTasks.map((task, index) => ({ ...task, id: String(index) }));
+  });
+
   const [newTask, setNewTask] = useState('');
 
   // Handle adding a new task
@@ -131,6 +146,10 @@ const TaskList = ({ initialTasks = [], onUpdateTasks }) => {
     }
   };
 
+  useEffect(() => {
+    onUpdateTasks(tasks);
+  }, [tasks]);
+
   return (
     <div className={`w-full mt-8 ${inter.className}`}>
       <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
@@ -141,6 +160,7 @@ const TaskList = ({ initialTasks = [], onUpdateTasks }) => {
               task={task}
               onTaskUpdate={handleTaskUpdate}
               onTaskDelete={handleTaskDelete}
+              styles={styles}
             />
           ))}
         </SortableContext>
@@ -153,7 +173,7 @@ const TaskList = ({ initialTasks = [], onUpdateTasks }) => {
         onChange={(e) => setNewTask(e.target.value)}
         onKeyPress={handleAddTask}
         placeholder="Add a new task..."
-        className={`w-full focus:outline-none my-4 text-black pl-[1vw] text-xl ${inter.className}`}
+        className={`w-full focus:outline-none my-4 pl-[1vw] text-base font-poppins ${styles.text} ${styles.inputBg} border-b border-current/20 placeholder:text-sm placeholder:${styles.text}`}
         autoFocus
       />
     </div>

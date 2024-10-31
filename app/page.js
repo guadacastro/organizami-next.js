@@ -1,5 +1,5 @@
 'use client'
-
+import Link from 'next/link'
 export default function Home() {
   return (
     <div>
@@ -13,9 +13,11 @@ export default function Home() {
             Organize your life with ease
           </h2>
           
-          <button className="text-white text-lg sm:text-xl font-bold bg-gradient-to-b from-pink to-orange p-3 rounded-lg hover:bg-gradient-to-b hover:from-orange hover:to-pink transition-all duration-900 shadow-xl my-[5vh]">
-            Get Started
-          </button>
+          <Link href="/todo">
+            <button className="text-white text-lg sm:text-xl font-bold bg-gradient-to-b from-pink to-orange p-3 rounded-lg hover:bg-gradient-to-b hover:from-orange hover:to-pink transition-all duration-900 shadow-xl my-[5vh]">
+              Get Started
+            </button>
+          </Link>
         </section>
 
       </main>
