@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import ToDoList from '../components/ToDoList';
+import { motion } from 'framer-motion';
 
 const Page = () => {
   const [todoLists, setTodoLists] = useState([]);
@@ -24,6 +25,14 @@ const Page = () => {
     localStorage.setItem('todoListIds', JSON.stringify(newLists));
   };
 
+  const buttonVariants = {
+    tap: { 
+      scale: 0.8,
+      rotate: 180,
+      transition: { duration: 0.3 }
+    }
+  };
+
   if (!isLoaded) {
     return null;
   }
@@ -35,12 +44,14 @@ const Page = () => {
           <h1 className='py-[1vh] borel-text title-text bg-gradient-to-r from-orange to-pink bg-clip-text text-transparent content-center'>
             To do Lists
           </h1>
-          <button
+          <motion.button
             onClick={addTodoList}
-            className='bg-orange-500 hover:bg-orange-600 text-white w-10 h-10 bg-orange font-bold rounded-full flex items-center justify-center text-2xl'
+            whileTap="tap"
+            variants={buttonVariants}
+            className='bg-orange-500 hover:bg-orange-600 hover:shadow-xl text-white w-10 h-10 bg-orange font-bold rounded-full flex items-center justify-center text-2xl'
           >
             +
-          </button>
+          </motion.button>
         </div>
         <section className='flex flex-wrap gap-6 justify-center'>
           {todoLists.map(list => (
