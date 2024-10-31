@@ -1,12 +1,12 @@
 'use client'
 import Link from 'next/link'
+
 export default function Home() {
   return (
-    <div>
-      <main className="flex flex-col items-center justify-center min-h-screen">
-        
+    <div className="min-h-screen bg-gray-100 pt-16 px-4 sm:px-8 lg:px-16">
+      <main className="flex flex-col items-center justify-center max-w-7xl mx-auto">
         <section className="flex flex-col items-center justify-evenly h-full w-full gap-10">
-          <h1 className="title-text borel-text px-[5vw] sm:px-[10vw] xl:py-[5vh] sm:py-[10vh] py-[5vh] gradient-text animate-gradient text-center leading-normal sm:leading-normal overflow-x-hidden">
+          <h1 className="py-[10vh] title-text borel-text bg-gradient-to-r from-orange to-pink bg-clip-text text-transparent">
             Welcome to Organizami
           </h1>
           <h2 className="text-pink text-[1.5rem] sm:text-xl p-3 text-center font-monserrat">
@@ -19,7 +19,6 @@ export default function Home() {
             </button>
           </Link>
         </section>
-
       </main>
     </div>
   );

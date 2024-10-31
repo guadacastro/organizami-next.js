@@ -3,9 +3,9 @@ import React from 'react';
 
 const page = () => {
   return (
-    <div className="min-h-screen bg-gray-100 py-8 sm:py-12">
-      <div className="px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
-        <h1 className="py-[5vh] title-text  borel-text text-center mb-8 sm:mb-16 bg-gradient-to-r from-orange to-pink bg-clip-text text-transparent">
+    <div className="min-h-screen bg-gray-100 pt-16 px-4 sm:px-8 lg:px-16">
+      <div className="max-w-3xl mx-auto">
+        <h1 className="py-[10vh] title-text text-center borel-text bg-gradient-to-r from-orange to-pink bg-clip-text text-transparent">
           Contact Us
         </h1>
 

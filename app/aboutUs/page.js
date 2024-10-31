@@ -3,12 +3,12 @@ import React from 'react';
 
 const page = () => {
   return (
-    <div className="min-h-screen bg-gray-100 py-8 sm:py-12">
-      <h1 className="borel-text title-text py-[5vh] text-center mb-8 sm:mb-16 bg-gradient-to-r from-orange to-pink bg-clip-text text-transparent px-4">
-        About Us
-      </h1>
+    <div className="min-h-screen bg-gray-100 pt-16 px-4 sm:px-8 lg:px-16">
+      <div className="max-w-4xl mx-auto">
+        <h1 className="py-[10vh] title-text text-center borel-text bg-gradient-to-r from-orange to-pink bg-clip-text text-transparent">
+          About Us
+        </h1>
 
-      <div className="px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="h-2 bg-gradient-to-r from-orange to-pink" />
           
