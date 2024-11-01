@@ -70,12 +70,12 @@ const Task = ({ task, onTaskUpdate, onTaskDelete, styles }) => {
             value={taskText}
             onChange={(e) => setTaskText(e.target.value)}
             onKeyPress={handleTaskKeyPress}
-            className={`border-b border-current/20 focus:outline-none w-full pl-[1vw] text-xl ${styles.text} ${styles.inputBg} font-poppins`}
+            className={`border-b border-current/20 focus:outline-none w-full pl-[1vw] rounded-md shadow-sm text-xl ${styles.text} ${styles.inputBg} font-poppins`}
             autoFocus
           />
         ) : (
           <p
-            className={`cursor-pointer text-xl ${styles.text} font-poppins ${isCompleted ? 'line-through' : ''} break-words`}
+            className={` cursor-pointer text-xl ${styles.text} font-poppins ${isCompleted ? 'line-through' : ''} break-words`}
             onClick={() => setIsEditingTask(true)}
           >
             {taskText}
@@ -151,8 +151,8 @@ const TaskList = ({ initialTasks = [], onUpdateTasks, styles, todoListId }) => {
   }, [tasks]);
 
   return (
-    <div className={`w-full mt-8 ${inter.className}`}>
-      <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+    <div className={` py-[.5vh] px-[1vw] ${inter.className}`}>
+      <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd} className='shadow-lg'>
         <SortableContext items={tasks.map((task) => task.id)} strategy={verticalListSortingStrategy}>
           {tasks.map((task) => (
             <Task
@@ -161,6 +161,7 @@ const TaskList = ({ initialTasks = [], onUpdateTasks, styles, todoListId }) => {
               onTaskUpdate={handleTaskUpdate}
               onTaskDelete={handleTaskDelete}
               styles={styles}
+
             />
           ))}
         </SortableContext>
@@ -173,7 +174,7 @@ const TaskList = ({ initialTasks = [], onUpdateTasks, styles, todoListId }) => {
         onChange={(e) => setNewTask(e.target.value)}
         onKeyPress={handleAddTask}
         placeholder="Add a new task..."
-        className={`w-full focus:outline-none my-4 pl-[1vw] text-base font-poppins ${styles.text} ${styles.inputBg} border-b border-current/20 placeholder:text-sm placeholder:${styles.text}`}
+        className={`w-full focus:outline-none my-4 pl-[5vw] py-[1.5vh] rounded-lg shadow-sm text-base font-poppins ${styles.text} ${styles.inputBg} border-b border-current/20 placeholder:text-sm placeholder:${styles.text}`}
         autoFocus
       />
     </div>

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { Menu, X, Origami } from 'lucide-react';
 import { usePathname } from 'next/navigation';
+import WeatherWidget from './WeatherWidget';
 
 const navItems = [{name:"Home",link:"/"},{name:"To do",link:"/todo"}, {name:"About us",link:"/aboutUs"}, {name:"Contact",link:"/contactUs"}];
 
@@ -18,7 +19,7 @@ function Header() {
       
       {/* Desktop Navigation */}
       <div className="hidden lg:flex flex-grow justify-center items-center text-orange">
-        <nav className="flex justify-center gap-[3rem]" >
+        <nav className="flex justify-center gap-[3rem] items-center" >
           {navItems.map((item,idx)=>
             <Link 
               className={`
@@ -38,6 +39,7 @@ function Header() {
               {item.name}
             </Link>
           )}
+          <WeatherWidget />
         </nav>
       </div>
       

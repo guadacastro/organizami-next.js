@@ -58,7 +58,7 @@ function ToDoList({ id, onDelete }) {
               setTitle(newTitle);
             }
           }}
-          className={`text-xl sm:text-2xl md:text-3xl font-poppins ${styles.text} ${styles.inputBg} border-b border-current focus:outline-none text-left w-full`}
+          className={`text-xl sm:text-2xl md:text-3xl font-poppins font-semibold border-none shadow-lg rounded-lg  py-[.5vh] px-[1vw] ${styles.text} ${styles.inputBg} border-b border-current focus:outline-none text-left w-full`}
           autoFocus
         />
       );
@@ -109,15 +109,15 @@ function ToDoList({ id, onDelete }) {
   };
 
   return (
-    <div className="w-full bg-gray-100">
+    <div className="w-full rounded-lg bg-gradient-to-br from-gray-50 to-gray-200 opacity-90">
       <div className={`w-full rounded-lg shadow-lg p-10 ${styles.background}`}>
         <Colors onColorChange={handleColorChange} />
-        <div className="w-full mb-4 sm:mb-6 flex justify-between">
+        <div className="w-full mb-4 sm:mb-6 flex justify-between  items-center">
           {isEditing ? (
             changeTitle()
           ) : (
             <h1
-              className={`text-xl sm:text-2xl md:text-3xl font-poppins ${styles.text} cursor-pointer text-center break-words`}
+              className={`text-xl sm:text-2xl md:text-3xl font-poppins font-semibold ${styles.text} cursor-pointer text-center break-words`}
               onClick={() => setIsEditing(true)}
             >
               {title || 'Click to edit title'}
@@ -130,9 +130,9 @@ function ToDoList({ id, onDelete }) {
               localStorage.removeItem(`todolist-${id}-tasks`);
               onDelete(id);
             }}
-            className={`top-2 right-2 ${styles.text} font-bold w-6 h-6 rounded-full flex items-center justify-center text-sm`}
+            className={`${styles.text} hover:opacity-75 transition-opacity`}
           >
-            <X size={20} />
+            <X size={24} className='hover:scale-110 transition-transform duration-100 ' />
           </button>
         </div>
         <TaskList 
