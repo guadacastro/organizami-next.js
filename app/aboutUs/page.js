@@ -42,6 +42,14 @@ const page = () => {
                   <span className="mr-2">•</span>
                   Automatic saving of all your changes
                 </li>
+                <li className="flex items-start">
+                  <span className="mr-2">•</span>
+                  Built-in weather dashboard for daily planning
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">•</span>
+                  Pomodoro timer for focused work sessions
+                </li>
               </ul>
             </div>
           </div>
