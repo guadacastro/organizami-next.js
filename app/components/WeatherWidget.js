@@ -42,12 +42,12 @@ function WeatherWidget() {
 
   if (loading) return <div className="text-sm">Loading weather...</div>;
   if (error) return <div className="text-sm text-red-500">{error}</div>;
-  if (!weather) return null;
+  if (!weather || !weather.weather || !weather.weather[0]) return null;
 
   return (
     <div className="flex items-center gap-2 text-sm">
       <img 
-        src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`}
+        src={`https://openweathermap.org/img/w/${weather.weather[0].icon}.png`}
         alt={weather.weather[0].description}
         className="w-10 h-10"
       />
