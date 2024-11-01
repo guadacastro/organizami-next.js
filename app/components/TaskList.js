@@ -43,13 +43,14 @@ const Task = ({ task, onTaskUpdate, onTaskDelete, styles }) => {
     >
       <div className="flex items-center">
         {/* Draggable handle */}
-        <div
+        <button
           {...attributes}
           {...listeners}
-          className="ml-2 cursor-move hover:text-orange"
+          className="ml-2 cursor-move hover:text-orange touch-none"
+          type="button"
         >
           <AlignJustify className='opacity-50 hover:opacity-100'/>
-        </div>
+        </button>
         <input
           type="checkbox"
           checked={isCompleted}

@@ -3,33 +3,50 @@ import { useState, useEffect } from 'react';
 import { FaPlay, FaPause, FaRedo } from 'react-icons/fa';
 
 function PomodoroTimer() {
-  const [timeLeft, setTimeLeft] = useState(() => {
-    const saved = localStorage.getItem('pomodoroTimeLeft');
-    return saved ? parseInt(saved) : 25 * 60;
-  });
-  
-  const [isRunning, setIsRunning] = useState(() => {
-    const saved = localStorage.getItem('pomodoroIsRunning');
-    return saved ? JSON.parse(saved) : false;
-  });
-  
-  const [isBreak, setIsBreak] = useState(() => {
-    const saved = localStorage.getItem('pomodoroIsBreak');
-    return saved ? JSON.parse(saved) : false;
-  });
+  const [mounted, setMounted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(25 * 60);
+  const [isRunning, setIsRunning] = useState(false);
+  const [isBreak, setIsBreak] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem('pomodoroTimeLeft', timeLeft.toString());
-    localStorage.setItem('pomodoroIsRunning', JSON.stringify(isRunning));
-    localStorage.setItem('pomodoroIsBreak', JSON.stringify(isBreak));
-  }, [timeLeft, isRunning, isBreak]);
+    setMounted(true);
+    const savedTime = localStorage.getItem('pomodoroTimeLeft');
+    const savedTimestamp = localStorage.getItem('pomodoroLastTimestamp');
+    const savedRunning = localStorage.getItem('pomodoroIsRunning');
+    const savedBreak = localStorage.getItem('pomodoroIsBreak');
+
+    if (savedTime && savedTimestamp && savedRunning === 'true') {
+      const elapsed = Math.floor((Date.now() - parseInt(savedTimestamp)) / 1000);
+      const remainingTime = Math.max(0, parseInt(savedTime) - elapsed);
+      setTimeLeft(remainingTime);
+      setIsRunning(true);
+    } else if (savedTime) {
+      setTimeLeft(parseInt(savedTime));
+    }
+
+    if (savedBreak) {
+      setIsBreak(JSON.parse(savedBreak));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (mounted) {
+      localStorage.setItem('pomodoroTimeLeft', timeLeft.toString());
+      localStorage.setItem('pomodoroIsRunning', JSON.stringify(isRunning));
+      localStorage.setItem('pomodoroIsBreak', JSON.stringify(isBreak));
+      
+      if (isRunning) {
+        localStorage.setItem('pomodoroLastTimestamp', Date.now().toString());
+      }
+    }
+  }, [timeLeft, isRunning, isBreak, mounted]);
 
   useEffect(() => {
     let interval;
     
     if (isRunning && timeLeft > 0) {
       interval = setInterval(() => {
-        setTimeLeft((prevTime) => {
+        setTimeLeft(prevTime => {
           const newTime = prevTime - 1;
           if (newTime === 0) {
             setIsRunning(false);
@@ -45,10 +62,7 @@ function PomodoroTimer() {
   }, [isRunning, isBreak]);
 
   const toggleTimer = () => {
-    setIsRunning((prev) => !prev);
-    if (!isRunning) {
-      localStorage.setItem('pomodoroLastTimestamp', Date.now().toString());
-    }
+    setIsRunning(prev => !prev);
   };
 
   const resetTimer = () => {
@@ -63,6 +77,24 @@ function PomodoroTimer() {
 
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
+
+  if (!mounted) {
+    return (
+      <div className="flex items-center gap-2 bg-[#FFF8F0] rounded-lg px-3 py-1.5 shadow-sm border border-[#FF9130]/20">
+        <div className="text-sm font-semibold min-w-[60px] text-[#FF9130] opacity-0">
+          00:00
+        </div>
+        <div className="flex gap-1.5 invisible">
+          {/* Buttons placeholder */}
+          <div className="w-7 h-7" />
+          <div className="w-7 h-7" />
+        </div>
+        <div className="text-xs font-medium text-[#FF9130] invisible">
+          Work
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex items-center gap-2 bg-[#FFF8F0] rounded-lg px-3 py-1.5 shadow-sm border border-[#FF9130]/20">
