@@ -25,38 +25,15 @@ export default function Home() {
     }
   }
 
-  const titleVariants = {
-    initial: { 
-      textShadow: "0px 0px 0px rgba(0,0,0,0)"
-    },
-    hover: {
-      textShadow: "2px 2px 8px rgba(255, 182, 193, 0.6)",
-      y: [-2, 2, -2],
-      transition: {
-        y: {
-          repeat: Infinity,
-          duration: 2,
-          ease: "easeInOut"
-        },
-        textShadow: {
-          duration: 0.3
-        }
-      }
-    }
-  }
-
   return (
     <div className="min-h-screen bg-gray-100 pt-16 px-4 sm:px-8 lg:px-16">
       <main className="flex flex-col items-center justify-center max-w-7xl mx-auto">
         <section className="flex flex-col items-center justify-evenly h-full w-full gap-10">
-          <motion.h1 
-            className="py-[10vh] title-text borel-text bg-gradient-to-r from-orange to-pink bg-clip-text text-transparent cursor-pointer"
-            variants={titleVariants}
-            initial="initial"
-            whileHover="hover"
+          <h1 
+            className="py-[10vh] title-text borel-text bg-gradient-to-r from-orange to-pink bg-clip-text text-transparent"
           >
             Welcome to Organizami
-          </motion.h1>
+          </h1>
           <h2 className="text-pink text-[1.5rem] sm:text-xl p-3 text-center font-monserrat">
             Organize your life with ease
           </h2>
